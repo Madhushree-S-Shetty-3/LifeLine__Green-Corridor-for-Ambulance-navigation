@@ -29,7 +29,7 @@ def generate_ambulance_locations(n, bounds):
     longitudes = np.random.uniform(bounds['lon_min'], bounds['lon_max'], n)
     return [("Ambulance {}".format(i + 1), lat, lon) for i, (lat, lon) in enumerate(zip(latitudes, longitudes))]
 
-AMBULANCES = generate_ambulance_locations(10000, BANGALORE_BOUNDS)
+AMBULANCES = generate_ambulance_locations(2500, BANGALORE_BOUNDS)
 
 # Geocoding function with caching
 location_cache = {}
@@ -38,7 +38,7 @@ def geocode_location(location):
     if location in location_cache:
         return location_cache[location]
     try:
-        geolocator = Nominatim(user_agent="YourAppName - YourEmail@example.com", timeout=10)
+        geolocator = Nominatim(user_agent="LifeLine - jaydev.cs22@bmsce.ac.in", timeout=10)
         time.sleep(1)  
         loc = geolocator.geocode(location)
         if loc:
@@ -133,7 +133,7 @@ def display_route_with_traffic(patient_coords, destination_coords, is_hospital=T
                 radius=5,
                 color=color,
                 fill=True,
-                fill_opacity=1,
+                fill_opacity=0.5,
             ).add_to(route_map)
 
             traffic_signal_details.append({
